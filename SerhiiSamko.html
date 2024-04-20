@@ -40,22 +40,24 @@ function whichMonth(m)
 	return(names[m-1]);
 }
 
-
-
-// function to perform zeller's congruence
-//
-//  adapted by Walter Plinge 29/02/2017
-//
-//  got this off the Internet so it should be alright
-//
-
-function zeller( day,month, year) /* returns 0-6 where 0=sunday, 1=monday, etc....*/
+/**
+ * Function to perform zeller's congruence
+ * Adapted by Walter Plinge 29/02/2017, changed by Serhii Samko 20/04/2024
+ * https://en.wikipedia.org/wiki/Zeller%27s_congruence
+ * Returns values from the range 0 - 6, where 0 = Saturday, 1 = Sunday, etc....
+ *
+ * @param day
+ * @param month
+ * @param year
+ * @returns {number}
+ */
+function zeller( day,month, year)
 {
-    if (month < 3) { month += 12; year -= 1; }
+    if (month < 3) { month += 12; year -= 1; } // control structure to handle January and February;
 
-    var h = (day + parseInt((13 * (month + 1)) / 5) + year + parseInt(year / 4) - parseInt(year / 100) + parseInt(year / 400)) % 7;
+    var h = (day + parseInt((13 * (month + 1)) / 5) + year + parseInt(year / 4) - parseInt(year / 100) + parseInt(year / 400)) % 7; // calculation fo the number to be mapped with the day of the week;
 
-    return h;
+    return h; // values to be returned: 0, 1, 2, 3, 4, 5, 6;
 }
 
 // function to ask user for a valid year
